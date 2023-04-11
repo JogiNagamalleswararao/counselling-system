@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Home page{% endblock %}</title>
+    <link rel="icon" type="image/png" href="https://image3.mouthshut.com/images/imagesp/925888329s.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        /* Set height of body and html to full screen */
+        html, body {
+            height: 100%;
+        }
+
+        /* Add padding to top of body to make space for navigation bar */
+        body {
+            padding-top: 56px;
+        }
+
+        /* Set background color of navigation bar */
+        .navbar {
+            background-color: #4CAF50;
+        }
+
+        /* Set text color of navigation links */
+        .navbar-nav a {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" href="{% url 'base' %}">VIT</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'student_r' %}">Student Registration</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'parent_r' %}">Parent Registration</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'teacher_r' %}">Teacher Registration</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page content -->
+    <div class="container">
+        {% block content %} 
+        <div class="container">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                  <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="/media/site_img/vishnucollege.png" alt="Banner Image 1" class="d-block w-100">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/media/site_img/1614241907DSC_0487.png" alt="Banner Image 2" class="d-block w-100">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/media/site_img/gl_me_cfd.png" alt="Banner Image 3" class="d-block w-100">
+                  </div>
+                </div>
+                <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+               
+              
+            <!-- Introduction paragraphs -->
+            <div class="row mt-3">
+              <div class="col-lg-8 offset-lg-2">
+                <h1>Welcome to My Institute</h1>
+                <p class="lead">Vishnu Institute for Technology University Admission 2023: Andhra Pradesh State Council of Higher Education (APSCHE) has announced the exam dates for AP PGECET 2023. The AP PGECET 2023 will be conducted from May 28 to 30, 2023, to offer admission to postgraduate Engineering and Pharmacy courses such as M.E./MTech, M. Pharma, and Pharm. D, in the state of Andhra Pradesh. The registration process will tentatively begin in April 2023. Candidates can check the official website for more details- cets.apsche.ap.gov.in/APSCHEHome.aspx.Candidates who wish to apply for the MBA and MCA courses must appear for the AP ICET 2023 from May 25 - 26, 2023. Admission to the BEd course will be done on the basis of AP EDCET 2023, scheduled on May 20, 2023.</p>
+                <p class="lead">Vishnu Institute for Technology, Bhimavaram was established under the aegis of Sri Vishnu Educational Society in the year 2008. The institute is ranked 149th for B.Tech by IndiaToday 2022 and ranked 106th for B.Tech by The Week 2022. VIT Bhimavaram offers undergraduate and postgraduate programs in the discipline of Computer Science and Engineering, Electronics and Communication Engineering, Electrical and Electronics Engineering and many more. Admission is based on marks obtained in the qualifying exam. The 2020 batch has witnessed a growth in the placement statistics from 88% (2018) to 97% (2020). The highest salary package offered to students of the 2021 outgoing batch is INR 41 LPA and the lowest salary package is offered at INR 3 LPA. Some of the potential recruiters are Hexaware, Accenture, Amazon, IBM, Hyundai, Infosys, Capgemini, etc.</p>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row mt-5">
+              <div class="col-lg-8 offset-lg-2">
+                <h2>Why Choose Us?</h2>
+                <ul>
+                  <li>We have highly qualified and experienced faculty members.</li>
+                  <li>We provide personalized attention to each student.</li>
+                  <li>We offer flexible schedules to accommodate your needs.</li>
+                  <li>We use modern teaching methods and technology.</li>
+                  <li>We have a proven track record of successful students.</li>
+                  <li>We offer a wide range of courses to choose from.</li>
+                  <li>We provide career counseling and placement services.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <!-- Vision and Mission section -->
+            <div class="row mt-5">
+              <div class="col-lg-6">
+                <h2>Vision</h2>
+                <p>To achieve academic excellence through innovative learning practices
+
+                </p>
+                <p>To expand the frontiers of knowledge through quality education.</p>
+                <p>To provide value added Research and development</p>
+                <p> To embody a spirit of excellence in Teaching, Creativity, Entrepreneurship and Outreach. </p>
+                
+              </div>
+              <div class="col-lg-6">
+                <h2>Mission</h2>
+                <p>To instill self confidence among rural students with co and extra – curricular activities, to inculcate discipline and values</p>
+                <p>To establish industry institute partnership, to create self employment opportunities with technical skills and to extend financial assistance to weaker sections</p>
+                <p>To achieve academic excellence through innovative learning practices</p>
+                <p>To promote community health and hygiene, to support eco-friendly practices, creating innovation hubs</p>
+              </div>
+            </div>
+          </div>
+          <!-- Academics and Departments -->
+            <div class="container-fluid bg-light">
+            <div class="container py-5">
+              <h2 class="text-center mb-5">Academics and Departments</h2>
+          
+              <div class="row">
+                <div class="col-md-4 mb-4">
+                  <div class="card">
+                    <img src="/media/site_img/63487-programming-computer.gif" alt="Department 1" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title">Computer Science and Engineering</h5>
+                      <p class="card-text">Computer Science Engineering (CSE) is an academic programme that integrates the field of Computer Engineering and Computer Science. It is one of the most sought-after courses among engineering students. The course contains a plethora of topics but emphasises the basics of computer programming and networking. The topics covered in the course are computation, algorithms, programming languages, program design,  </p>
+                      <a href="#" class="btn btn-primary">Learn more</a>
+                    </div>
+                  </div>
+                </div>
+          
+                <div class="col-md-4 mb-4">
+                  <div class="card">
+                    <img src="/media/site_img/135521-processor.gif" alt="Department 2" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title">Electronics and Communication Engineering</h5>
+                      <p class="card-text"> [img src][img license]
+                        Electronics & Communication Engineering deals with the electronic devices, circuits, communication equipments like transmitter, receiver, integrated circuits (IC). It also deals with basic electronics, analog and digital transmission & reception of data, voice and video (Example AM, FM, DTH), microprocessors, satellite communication, microwave engineering, antennae and wave progression </p>
+                      <a href="#" class="btn btn-primary">Learn more</a>
+                    </div>
+                  </div>
+                </div>
+          
+                <div class="col-md-4 mb-4">
+                  <div class="card">
+                    <img src="/media/site_img/55582-icon-animation-of-electronics.gif" alt="Department 3" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title">Electronics and Electrical Engineering</h5>
+                      <p class="card-text">Electrical & Electronics Engineering (EEE), deals with the engineering problems, opportunities and needs of electrical, electronics, computer, telecommunication systems and related industries. This branch provides students with a wide range of fundamental knowledge in core disciplines such as communications, control systems, signal processing, radio frequency design, micro-processors, micro-electronics, power generation and electrical machines.  </p>
+                      <a href="#" class="btn btn-primary">Learn more</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4 mb-4">
+                  <div class="card">
+                    <img src="/media/site_img/103186-ai-automation.gif" alt="Department 1" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title">Information Technology</h5>
+                      <p class="card-text">Information technology (IT) is the use of computers to create, process, store, retrieve and exchange all kinds of data[1] and information. IT forms part of information and communications technology (ICT).[2] An information technology system (IT system) is generally an information system, a communications system, or, more specifically speaking, a computer system .</p>
+                      <a href="#" class="btn btn-primary">Learn more</a>
+                    </div>
+                  </div>
+                </div>
+          
+                <div class="col-md-4 mb-4">
+                  <div class="card">
+                    <img src="/media/site_img/7592-settings.gif" alt="Department 2" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title">Mechanical Engineering</h5>
+                      <p class="card-text">Mechanical engineering combines creativity, knowledge and analytical tools to complete the difficult task of shaping an idea into reality.Mechanical engineering plays a vital role in many industries, including automotive, aerospace, energy, manufacturing, and construction. Mechanical engineers design and develop everything from engines . The work of mechanical engineers involves designing, analyzing</p>
+                      <a href="#" class="btn btn-primary">Learn more</a>
+                    </div>
+                  </div>
+                </div>
+          
+                <div class="col-md-4 mb-4">
+                  <div class="card">
+                    <img src="/media/site_img/124036-civil-engineers.gif" alt="Department 3" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title">Civil Engineering</h5>
+                      <p class="card-text">Civil engineering is a professional engineering discipline that deals with the design, construction, and maintenance of the physical and naturally built environment, including public works such as roads, bridges, canals, dams, airports, sewage systems, pipelines, structural components of buildings, and railways.Civil engineers use their knowledge of mathematics, physics </p>
+                      <a href="#" class="btn btn-primary">Learn more</a>
+                    </div>
+            </div>
+          </div>
+          </div>
+          <div class="container">
+            <div class="row mt-5">
+              <div class="col-lg-8 offset-lg-2">
+                <h2>Founders of Vishnu</h2>
+                <ul>
+                  <li>Mr. Sri. K.V. Vishnu Raju - Chairman</li>
+                  <li>Ms. Sri. Ravichandran Rajagopal - vice-chairman</li>
+                  <li>Mr. Sri Aditya Vissam- Seceratory</li>
+                  <li>Mr. Dr. D. Suryanarayana - Director and Principal</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+        
+          <footer style="background-color: #4CAF50; color: rgb(226, 222, 222);">
+            <div class="container py-3">
+              <div class="row">
+                <div class="col-md-6">
+                  <h5>Contact Us</h5>
+                  <p>Email: vishnu.edu.in</p>
+                  <p>Phone: 08816251333</p>
+                  <p>Address:  vishnu, Bhimavaram 534202</p>
+                </div>
+                <div class="col-md-6">
+                  <h5>About the Developer</h5>
+                  <p>Malleswararo</p>
+                  <p>Email: malli@gmail.com</p>
+                  <p>Phone: 9390308799</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>&copy; 2023 My Institute. All rights reserved.</p>
+                </div>
+                <div class="col-md-6">
+                  <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Privacy Policy</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Terms of Service</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">FAQ</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </footer>
+          
+           <!-- Link to external Bootstrap JS -->
+           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+           <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+           <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+        
+           <!-- Custom JS -->
+           <script>
+           $('.carousel').carousel({
+               interval: 2000,
+               pause: false
+           })
+           </script>
+        
+        
+          
+          <!-- Link to external Bootstrap JS (optional) -->
+          <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        
+        
+        {% endblock %}
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.min.js"></script>
+
+  
+  <!-- Link to external Bootstrap JS (optional) -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+</body>
+</html>

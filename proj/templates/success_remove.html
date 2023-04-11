@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Remove Request{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <img src="/media/site_img/103419-becket-trash-can.gif" alt="Success" class="card-img-top mx-auto d-block mt-3">
+          <div class="card-body text-center">
+            <h3 class="card-title">Request Successfully Removed</h3>
+            <p class="card-text">The request has been successfully removed from the database.</p>
+            <a href="{% url 'teacher_dashboard' %}" class="btn btn-primary">Back to Your Dashboard</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

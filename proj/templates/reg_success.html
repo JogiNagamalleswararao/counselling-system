@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Successfully Registred {% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body text-center">
+            <img src="/media/site_img/104368-thank-you.gif" alt="Success" class="card-img-top mx-auto d-block mt-3">
+            <h3 class="card-title">your details Successfully Registred our Database </h3>
+            <p class="card-text">Go to log in page </p>
+            <a href="{% url 'login' %}" class="btn btn-primary">Back to Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

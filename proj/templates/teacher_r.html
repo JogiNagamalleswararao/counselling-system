@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %}Teacher Registration{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center mb-4">Teacher Registration</h2>
+            {% if messages %}
+                {% for message in messages %}
+                    <div id="error-message-{{ forloop.counter }}" class="alert alert-danger">{{ message }}</div>
+                    <script>
+                        // get the error message element
+                        var errorMessage = document.getElementById('error-message-{{ forloop.counter }}');
+                        // hide the error message after 5 seconds
+                        setTimeout(function() {
+                            errorMessage.style.display = 'none';
+                        }, 5000);
+                    </script>
+                {% endfor %}
+            {% endif %}
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="uid">UID:</label>
+                    <input type="text" name="uid" id="uid" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" id="name" class="form-control">
+                </div>
+                <!-- <div class="form-group">
+                    <label for="dep"></label>
+                    <input type="text" name="dep" id="dep" class="form-control">
+                </div> -->
+                <div class="form-group">
+                    <label for="dep">Department:</label>
+                    <select name="dep" id="dep" class="form-control">
+                        <option value="">Select your Department</option>
+                        <option value="CSE">Computer Science and Engineering</option>
+                        <option value="IT">Information Technology</option>
+                        <option value="AIDS">AIDS</option>
+                        <option value="CSBS">CSBS</option>
+                        <option value="EEE">Electrical and Electronics Engineering</option>
+                        <option value="ECE">Electronics and Communication Engineering</option>
+                        <option value="ME">Mechanical Engineering</option>
+                        <option value="CE">Civil Engineering</option> 
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="dep">Designation</label>
+                    <select name="des" id="des" class="form-control">
+                        <option value="">Select your Designation</option>
+                        <option value="Chairman">Chairman</option>
+                        <option value="Director">Director</option>
+                        <option value="Principal">Principal</option>
+                        <option value="Vice Principal">Vice Principal</option>
+                        <option value="HOD">HOD</option>
+                        <option value="Associate Professor">Associate Professor</option>
+                        <option value="Assistant professor">Assistant professor</option>
+                    </select>
+                </div>
+                <!-- <div class="form-group">
+                    <label for="img">Image:</label>
+                    <input type="text" name="img" id="img" class="form-control">
+                </div> -->
+                <div class="form-group">
+                    <label for="mobile_num">Mobile Number:</label>
+                    <input type="tel" name="mobile_num" id="mobile_num" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="img">Image:</label>
+                    <input type="file" name="image" id="img" class="form-control">
+                </div>
+                <!-- <div class="form-group">
+                    <label for="address">Address:</label>
+                    <textarea name="address" id="address" class="form-control"></textarea>
+                </div> -->
+                <button type="submit" class="btn btn-primary btn-block">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

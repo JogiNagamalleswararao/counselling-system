@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Student Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <img src="{{student.image.url}}" alt="profile image" class="img-fluid rounded-circle">
+      <h4>Welcome, {{ student.fname }} {{ student.lname }}</h4>
+      <hr>
+      <ul class="list-group">
+        <li class="list-group-item active">Dashboard</li>
+        <!-- <li class="list-group-item"><a href="#">Profile</a></li> -->
+        <!-- <li class="list-group-item"><a href="#">Course List</a></li> -->
+        <li class="list-group-item"><a href="#">Fee Details</a></li>
+        <li class="list-group-item"><a href="{% url 'logout' %}">Logout</a></li>
+      </ul>
+    </div>
+    <div class="col-md-10">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Student Information</h5>
+        </div>
+        <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group-item">UID: {{ student.uid }}</li>
+            <li class="list-group-item">Email: {{ student.email }}</li>
+            <li class="list-group-item">Name: {{ student.fname }} {{ student.lname }}</li>
+            <li class="list-group-item">Branch: {{ student.branch }}</li>
+            <li class="list-group-item">Section: {{ student.sec }}</li>
+            <li class="list-group-item">Mobile Number: {{ student.mobile_num }}</li>
+            <li class="list-group-item">Address: {{ student.address }}</li>
+            <li class="list-group-item">Mentor Name: {{ student.mentor_name }}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card mt-3">
+        <div class="card-header">
+          <h5 class="card-title">Teacher Information</h5>
+        </div>
+        <div class="card-body">
+          <ul class="list-group">
+           
+            <li class="list-group-item">Name: {{ teacher.name }}</li>
+            <li class="list-group-item">Department: {{ teacher.dep }}</li>
+            <li class="list-group-item">Mobile Number: {{ teacher.mobile_num }}</li>
+            <li class="list-group-item">Address: {{ teacher.Email }}</li>
+            
+          </ul>
+        </div>
+      </div>
+      <div class="card mt-3">
+        <div class="card-header">
+          <h5 class="card-title">Fee Details</h5>
+        </div>
+        <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group-item">Total Fee: {{ fee.total_fee }}</li>
+            <li class="list-group-item">Paid Fee: {{ fee.paid_fee }}</li>
+            <li class="list-group-item">Due Fee: {{ fee.due_fee }}</li>
+            <li class="list-group-item">Last Payment Date: {{ fee.last_payment_date }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+   </div>
+</div>
+{% endblock %}

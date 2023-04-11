@@ -1,0 +1,246 @@
+{% extends 'base.html' %}
+
+{% block title %}Teacher Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+  <div class="row justify-content-end">
+    <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+  </div>
+</div>
+  <div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <img src="{{ teacher.image.url }}" class="img-fluid rounded-circle mb-3" alt="{{ teacher.name }}" width="150" height="150">
+            <h5 class="card-title">{{ teacher.name }}</h5>
+            <p class="card-text">{{ teacher.dep }}</p>
+            <p class="card-text">{{ teacher.email }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Add Students</h5>
+            <form method="POST" action="">
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div id="error-message-{{ forloop.counter }}" class="alert alert-danger">{{ message }}</div>
+                    <script>
+                        // get the error message element
+                        var errorMessage = document.getElementById('error-message-{{ forloop.counter }}');
+                        // hide the error message after 5 seconds
+                        setTimeout(function() {
+                            errorMessage.style.display = 'none';
+                        }, 5000);
+                    </script>
+                {% endfor %}
+            {% endif %}
+            
+
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="student_uid">Student UID</label>
+                <input type="text" class="form-control" id="student_uid" name="student_uid">
+              </div>
+              <button type="submit" class="btn btn-primary">Add</button>
+              
+            </form>
+            <hr>
+            <form method="POST">
+              {% csrf_token %}
+              <h5 class="card-title">Update meet link</h5>
+              <div class="form-group">
+                <label for="student_link">Link</label>
+                <input type="text" name="student_link" class="form-control" id="student_link" placeholder="Enter link">
+              </div>
+              <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+
+          </div>
+          <hr>
+            <h5 class="card-title">My Students</h5>
+            {% if mentors %}
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">UID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Branch</th>
+          <th scope="col">Section</th>
+          <!-- <th scope="col">Actions</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        {% for student in mentors %}
+          <tr>
+            <td>{{ student.uid }}</td>
+            <td>{{ student.fname }} {{ student.lname }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.branch }}</td>
+            <td>{{ student.sec }}</td>
+            <!-- <td>
+              <button type="button" class="btn btn-primary view-student" data-toggle="modal" data-target="#studentModal" data-uid="{{ student.uid }}" data-name="{{ student.fname }} {{ student.lname }}" data-email="{{ student.email }}" data-branch="{{ student.branch }}" data-sec="{{ student.sec }}" data-parent="{{ student.parent_name }}" data-parent-email="{{ student.parent_email }}" data-fee="{{ student.fee }}">
+                View Details
+              </button>
+            </td> -->
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="card mt-3">
+    <div class="card-body">
+      <h5 class="card-title">Parent Requests</h5>
+      {% if parent_requests %}
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Parent Name</th>
+                <th scope="col">Student Name</th>
+                <th scope="col">Student UID</th>
+                <th scope="col">Message</th>
+                <th scope="col">Approval</th>
+                <th scope="col">Cancel</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for parent_request in parent_requests %}
+                <tr>
+                  <td>{{ parent_request.parent.Fname}} {{ parent_request.parent.Lname }}</td>
+                  <td>{{ parent_request.student.fname }} {{ parent_request.student.lname }}</td>
+                  <td>{{ parent_request.student.uid }}</td>
+                  <td>{{ parent_request.message }}</td>
+                  <!-- <td>
+                    <button onclick="approveRequest('{{ parent_request.student.fname }}')">Approve</button>
+                </td> -->
+<!-- <h1>{{ parent_request.parent.mobile_num}}</h1> -->
+
+                <td>
+                  <form method="post" action="{% url 'approve_request' %}">
+                      {% csrf_token %}
+                      <input type="hidden" name="student_name" value="{{ parent_request.student.fname }}">
+                      <input type="hidden" name="parent_email" value="{{ parent_request.parent.Email}}">
+                      <input type="hidden" name="parent_phone" value="{{ parent_request.parent.mobile_num}}">
+                      <input type="hidden" name="message" value="{{ parent_request.message }}">
+                      <input type="hidden" name="teacher" value="{{ teacher.uid }}">
+                      <button type="submit" class="btn btn-primary">Approve</button>
+                  </form>
+                  <td>
+                    <form method="post" action="{% url 'success_remove' %}">
+                        {% csrf_token %}
+                        
+                        <input type="hidden" name="Remove" value="{{ parent_request.student }}">
+                        <button type="submit" class="btn btn-danger">Remove Request</button>
+                    </form>
+                </td>
+              </td>
+
+                <script>
+                  function approveRequest(studentName) {
+                      console.log("Approved for student: " + studentName);
+                      // Additional code to handle form submission and closing modal window
+                  }
+              </script>
+                  <!-- <td>
+                    {% if not parent_request.approved %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn-success" name="approve" value="Approve">
+                        <td>
+                        <input type="submit" class="btn btn-danger" name="cancel" value="Cancel">
+                        </td>
+                    </form>
+                    {% endif %}
+                </td> -->
+
+                <!-- <td>
+                  {% if not parent_request.approval_datetime %}
+                    <button type="button" class="btn btn-primary view-parent-request" data-toggle="modal" data-target="#approveRequestModal" data-id="{{ parent_request.id }}" data-parent-name="{{ parent_request.parent }}" data-student-name="{{ parent_request.student.fname }} {{ parent_request.student.lname }}" data-message="{{ parent_request.message }}">
+                      Approve
+                    </button>
+                  {% endif %}
+                  <button type="button" class="btn btn-danger cancel-parent-request" {% if parent_request.approval_datetime %} style="display:none" {% endif %} data-id="{{ parent_request.id }}">
+                    Cancel
+                  </button>
+                </td> -->
+                
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% endif %}
+      {% else %}
+        <p>No parent requests found.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<!-- Student Modal -->
+<!-- <div class="modal fade" id="studentModal" tabindex="-1" aria-labelledby="studentModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="studentModalLabel">Student Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="student-uid">UID</label>
+              <input type="text" class="form-control" id="student-uid" name="student-uid" disabled>
+            </div>
+            <div class="form-group">
+              <label for="student-name">Name</label>
+              <input type="text" class="form-control" id="student-name" name="student-name" disabled>
+            </div>
+            <div class="form-group">
+              <label for="student-email">Email</label>
+              <input type="email" class="form-control" id="student-email" name="student-email" disabled>
+            </div>
+            <div class="form-group">
+              <label for="student-branch">Branch</label>
+              <input type="text" class="form-control" id="student-branch" name="student-branch" disabled>
+            </div>
+            <div class="form-group">
+              <label for="student-sec">Section</label>
+              <input type="text" class="form-control" id="student-sec" name="student-sec" disabled>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="student-parent-name">Parent's Name</label>
+              <input type="text" class="form-control" id="student-parent-name" name="student-parent-name" disabled>
+            </div>
+            <div class="form-group">
+              <label for="student-parent-email">Parent's Email</label>
+              <input type="email" class="form-control" id="student-parent-email" name="student-parent-email" disabled>
+            </div>
+            <div class="form-group">
+              <label for="student-fee">Fee</label>
+              <input type="text" class="form-control" id="student-fee" name="student-fee" disabled>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- Parent Request Modal -->
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block title %}Parent Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+    <div class="row justify-content-end">
+      <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+    </div>
+  </div>
+  
+  <div class="container mt-5">
+    <h1>Welcome to Parent Dashboard</h1>
+    <hr>
+    <div class="row">
+      <div class="col-md-3">
+        <img src="{{student.image.url}}" alt="{{ student.fname }} {{ student.lname }}" class="img-thumbnail">
+      </div>
+      <div class="col-md-9">
+        <h2>Student Details</h2>
+        <div class="card">
+          <div class="card-body">
+            <p><strong>Name:</strong> {{ student.fname }} {{ student.lname }}</p>
+            <p><strong>Email:</strong> {{ student.email }}</p>
+            <p><strong>UID:</strong> {{ student.uid }}</p>
+            <p><strong>Branch:</strong> {{ student.branch }}</p>
+            <p><strong>Section:</strong> {{ student.sec }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-3">
+        <img src="{{mentor.image.url}}" alt="{{ mentor.fname }} {{ mentor.lname }}" class="img-thumbnail">
+      </div>
+      <div class="col-md-9">
+        <h2>Mentor Details</h2>
+        <div class="card">
+          <div class="card-body">
+            <p><strong>Name:</strong> {{ mentor.name }}</p>
+            <p><strong>Email:</strong> {{ mentor.Email }}</p>
+            <p><strong>Dep:</strong> {{ mentor.dep }}</p>
+            <p><strong>Contact No:</strong> {{ mentor.mobile_num }}</p>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#requestMeetModal">
+              Request Meet
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <h2>Fee Details</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            Tuition Fee
+          </div>
+          <div class="card-body">
+            <p><strong>Amount:</strong> {{ tuition_fee.amount }}</p>
+            <p><strong>Status:</strong> {{ tuition_fee.status }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            Miscellaneous Fee
+          </div>
+          <div class="card-body">
+            <p><strong>Amount:</strong> {{ misc_fee.amount }}</p>
+            <p><strong>Status:</strong> {{ misc_fee.status }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <h2>Your Details</h2>
+    <div class="card">
+      <div class="card-body">
+        <p><strong>Name:</strong> {{ parent.Fname }} {{ parent.Lname }}</p>
+        <p><strong>Email:</strong> {{ parent.Email }}</p>
+        <p><strong>Contact No:</strong> {{ parent.mobile_num}}</p>
+      </div>
+    </div>
+  </div>
+<!-- Modal -->
+<div class="modal fade" id="requestMeetModal" tabindex="-1" role="dialog" aria-labelledby="requestMeetModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="requestMeetModalLabel">Request Meet with {{ mentor.fname }} {{ mentor.lname }}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="post" action="{% url 'success_sent' %}">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="reason">Reason for meeting:</label>
+              <textarea class="form-control" id="reason" name="reason" rows="5" required></textarea>
+            </div>
+           <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+{% endblock %}
